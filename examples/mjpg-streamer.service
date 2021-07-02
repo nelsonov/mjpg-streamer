@@ -1,0 +1,12 @@
+[Unit]
+Description=Stream RPi cam
+
+[Service]
+Type=simple
+Restart=always
+User=motion
+Environment=LD_LIBRARY_PATH=/var/lib/motion/mjpg-streamer
+ExecStart=/var/lib/motion/mjpg-streamer/mjpg_streamer -o "output_http.so -w /var/lib/motion/mjpg-streamer" -i "input_raspicam.so -x 1280 -y 720 -fps 4 -rot 90"
+
+[Install]
+WantedBy=multi-user.target
